@@ -1,0 +1,16 @@
+<div class="center jumbotron task_main">
+<h1>ToDo's</h1>
+    <div class="form-group">
+
+      <%= text_field_tag 'task', nil, class: 'form-control',placeholder: "What needs to be done?" %>
+      <div class="todo_list">
+      <% @todos.each do |todo| %>
+        <div class="item=<%= todo.id %> item_div">
+          <%= check_box("item", todo.id, {checked: todo.active, :style => "float:left;", class: 'check_box'}) %>
+          <%= label todo.id, todo.title, todo.complete, class: 'form-control'  %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+</div>
+
