@@ -5,7 +5,7 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all
-    sync_update @todos
+    # sync_update @todos
 
   end
 
@@ -18,7 +18,7 @@ class TodosController < ApplicationController
   def new
     @todo = Todo.new
 
-      
+
   end
 
   # GET /todos/1/edit
@@ -28,21 +28,26 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
-    if request.xhr?
-      if params[:update].nil?
-        p params
-        @todo = TodosHelper.add_task(params)
-        render '_item', layout: false
-      else
-        @item_update = TodosHelper.update_task(params)
-        render json: @item_update
-      end
-    else
-      @todo = Todo.new(todo_params)
+    # if request.xhr?
+    #   if params[:update].nil?
+    #     p params
+    #     @todo = TodosHelper.add_task(params)
+    #     render '_item', layout: false
+    #   else
+    #     @item_update = TodosHelper.update_task(params)
+    #     render json: @item_update
+    #   end
+    # else
+
+      # @todo = Todo.new(params)
+      @todo = TodosHelper.add_task(params)
 
       respond_to do |format|
         if @todo.save
-          sync_update @todo
+          p @todo
+          p 'before sync'
+          sync_new @todo
+          p 'after sync'
           format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
           format.json { render :show, status: :created, location: @todo }
         else
@@ -50,7 +55,7 @@ class TodosController < ApplicationController
           format.json { render json: @todo.errors, status: :unprocessable_entity }
         end
       end
-    end
+    # end
    end
 
   # PATCH/PUT /todos/1

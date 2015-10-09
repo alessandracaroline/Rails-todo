@@ -35,7 +35,7 @@ function addTask(){
 //   $('form').find("input[type=textarea], input[type=password], textarea").each(function(ev)
 //     $("#"+id).next("label").html();
 //   {
-//       if(!$(this).val()) { 
+//       if(!$(this).val()) {
 //      $(this).attr("placeholder", "Type your answer here");
 //   }
 //   });
@@ -79,7 +79,7 @@ function addPostForm(){
 		getForm.done(function(data){
 			$current_target.hide();
 			$('#sidebar').append(data);
-			
+
 		});
 		getForm.fail(function(jqXHR, textStatus){
 			alert(jqXHR + textStatus);
@@ -101,7 +101,7 @@ function submitFormData(){
 			$('article').before(returnData);
 			$('#post_form').hide();
 			$('#new_post_link').show()
-	
+
 		}).fail(function(jqXHR, textStatus){
 			alert(jqXHR + textStatus)
 		});
